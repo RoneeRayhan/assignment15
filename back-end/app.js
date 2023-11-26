@@ -29,18 +29,10 @@ const limiter = rateLimit({
   max: 2000,
 });
 app.use(limiter);
-// const URL = 'mongodb://localhost:27017/StudentData'
+
 const URL = `mongodb+srv://crud1111:crud1111@cluster0.of6vy9p.mongodb.net/StudentData`;
+
 //Database connection
-// mongoose.connect(URL)
-// .then(() => {
-//     console.log('MongoDB Connected');
-// })
-// .catch((err) => {
-//     console.error('MongoDB Connection Error:', err);
-//     // Gracefully handle the error, e.g., exit the application
-//     process.exit(1);
-// });
 mongoose
   .connect(URL)
   .then(() => {
@@ -51,19 +43,6 @@ mongoose
     // Gracefully handle the error, e.g., exit the application
     process.exit(1);
   });
-
-// let URI =
-//   "mongodb+srv://<username>:<password>@cluster0.7uslu.mongodb.net/CRUD4";
-//   "mongodb+srv://<username>:<password>@cluster0.of6vy9p.mongodb.net/CRUD4";
-// let OPTION = { user: "testuser7777", pass: "testuser7777", autoIndex: true };
-// mongoose
-//   .connect(URI, OPTION)
-//   .then((res) => {
-//     console.log("Success");
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
 
 //Routing implementation
 app.use("/api/v1", router);
