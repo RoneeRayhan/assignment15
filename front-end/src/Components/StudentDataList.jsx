@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {  deleteStudentData, allStudentList } from '../apiRequest/apiRequest';
+import { deleteStudentData, allStudentList } from '../apiRequest/apiRequest';
 import toast, { Toaster } from 'react-hot-toast'
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
@@ -45,8 +45,7 @@ const StudentDataList = () => {
                         <div className="table-responsive">
                             <table className="table table-bordered">
                                 <thead>
-                                    <tr>
-                                        
+                                    <tr className='text-center'>
                                         <th>Name</th>
                                         <th>Gender</th>
                                         <th>Birth Date</th>
@@ -56,14 +55,14 @@ const StudentDataList = () => {
                                         <th>Phone </th>
                                         <th>Admission Date</th>
                                         <th>Courses</th>
-                                        <th>Action</th>
+                                        <th className='text-center'>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {data.map((item, i) => (
-                                        <tr key={i}>
-                                            
-                                            <td>{item.firstName + ' '+ item.lastName}</td>
+                                        <tr className='text-center' key={i}>
+
+                                            <td>{item.firstName + ' ' + item.lastName}</td>
                                             <td>{item.gender}</td>
                                             <td>{item.dateOfBirth}</td>
                                             <td>{item.address}</td>
@@ -72,9 +71,9 @@ const StudentDataList = () => {
                                             <td>{item.phone}</td>
                                             <td>{item.admissionDate}</td>
                                             <td>{item.courses}</td>
-                                            <td>
-                                                <Button onClick={() => { onDelete(item._id) }} variant="danger">Delete</Button>
-                                                <Link className='mt-2 btn btn-primary' to={`/saveData?id=${item._id}`} >Edit</Link >
+                                            <td className='text-center'>
+                                                <Button className='my-2 btn btn-primary mx-2' onClick={() => { onDelete(item._id) }} variant="danger">Delete</Button>
+                                                <Link className='my-2 btn btn-primary mx-2' to={`/saveData?id=${item._id}`} >Edit</Link >
                                             </td>
 
                                         </tr>
