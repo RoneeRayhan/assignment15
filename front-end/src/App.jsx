@@ -1,18 +1,18 @@
-import React from 'react';
-import {BrowserRouter,Routes,Route} from "react-router-dom";
-import ListPage from "./page/List-Page.jsx";
-import SavePage from "./page/save-page.jsx";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import StudentList from './pages/StudentList';
+import StudentRegForm from './pages/StudentRegForm';
 
-const App = () => {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<ListPage/>}/>
-                <Route path="/save" element={<SavePage/>}/>
-            </Routes>
-
-        </BrowserRouter>
-    );
-};
+function App() {
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<StudentList />} />
+          <Route path='/saveData' element={<StudentRegForm />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+}
 
 export default App;

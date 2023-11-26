@@ -1,76 +1,81 @@
-import axios from "axios";
+import axios from 'axios';
 
-export async function listTaskRequest(){
-    try {
-        let res=await fetch("http://localhost:5010/api/v1/list-task");
-        let JSONData=await res.json();
-        return JSONData['data'];
-    }catch (e) {
-        return []
-    }
-}
+const URL = `http://localhost:8080/api/v1/`
 
-export async function taskByIDRequest(id){
-    try {
-        let res=await fetch("http://localhost:5010/api/v1/task-by-id/"+id);
-        let JSONData=await res.json();
-        return JSONData['data'][0];
-    }catch (e) {
-        return []
-    }
-}
+
+export async function allStudentList (sad){
+   try{
+    let res = await fetch(`${URL}student-data`);
+    let jsonData = await res.json() ;
+
+    return jsonData['data']
+   }
+   catch(e){
+    return []
+   }
+} 
 
 
 
 
 
-
-
-
-export async function createTaskRequest(postBody){
-    try {
-        let res=await axios.post("http://localhost:5010/api/v1/create-task",postBody);
-        if(res.status===200){
+export async function createStudentData (postBody ){
+    try{
+        let res = await axios.post(`${URL}create-student-data` , postBody);
+         if(res.status === 200){
             return true;
-        }
-        else{
-            return  false
-        }
+         }
+         else{
+            return false
+         }
+       }
+       catch(e){
+        return false
+       }
+} 
 
-    }catch (e) {
-        return  false
-    }
-}
 
-
-
-export async function updateTaskRequest(postBody,id){
-    try {
-        let res=await axios.post("http://localhost:5010/api/v1/update-task/"+id,postBody);
-        if(res.status===200){
+export async function updateStudentData (postBody , id ){
+    try{
+        let res = await axios.post(`${URL}update-student-data/${id}` , postBody);
+         if(res.status === 200){
             return true;
-        }
-        else{
-            return  false
-        }
+         }
+         else{
+            return false
+         }
+       }
+       catch(e){
+        return false
+       }
+} 
 
-    }catch (e) {
-        return  false
-    }
+
+export async function deleteStudentData(id) {
+   try {
+       const res = await axios.get(`${URL}delete-student-data/${id}`);
+       const jsonData = res.data;
+
+       if (jsonData.status === "success") {
+           return true;
+       } else {
+           return false;
+       }
+   } catch (error) {
+       
+       return false;
+   }
 }
 
+export async function studentDataById(id) {
+   try {
+       const res = await fetch(`${URL}student-data/${id}`);
+       const jsonData = await res.json()
+    
+     return jsonData.data[0]
 
-
-export async function deleteTaskRequest(id){
-    try {
-        let res=await fetch("http://localhost:5010/api/v1/delete-task/"+id);
-        let JSONData=await res.json();
-        if(JSONData['status']==="success"){
-            return  true;
-        }else{
-            return  false;
-        }
-    }catch (e) {
-        return  false;
-    }
+   } catch (error) {
+       
+       return [];
+   }
 }
